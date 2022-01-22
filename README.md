@@ -1,2 +1,2 @@
 # functional-chain-behaviour
-Algorithmic mental model based on functional chaining for BeamJS apps
+A behavior used with BeamJS framework to apply an algorithmic mental model based on functional chaining.

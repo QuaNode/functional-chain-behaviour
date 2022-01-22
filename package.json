@@ -1,0 +1,33 @@
+{
+  "name": "functional-chain-behaviour",
+  "version": "1.0.0",
+  "description": "A behavior used with BeamJS framework to apply an algorithmic mental model based on functional chaining.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "peerDependencies": {
+    "beamjs": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quaNode/functional-chain-behaviour.git"
+  },
+  "keywords": [
+    "functional",
+    "chain",
+    "algorithm",
+    "mental",
+    "model",
+    "nodejs",
+    "beamjs",
+    "behaviour",
+    "behavior"
+  ],
+  "author": "Ahmed Ragab <ahmed@quanode.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quaNode/functional-chain-behaviour/issues"
+  },
+  "homepage": "https://github.com/quaNode/functional-chain-behaviour#readme"
+}

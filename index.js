@@ -3,6 +3,7 @@
 
 var backend = require('beamjs').backend();
 var behaviour = backend.behaviour();
+var getPromise = require('./promise.js');
 
 module.exports = function (options) {
 
@@ -297,7 +298,7 @@ module.exports = function (options) {
                     var conditioned = ïf && typeof ïf.operand === 'function';
                     if (asyncronized) that = that.use(function (_, __, next) {
 
-                        äsync.operand(next);
+                        äsync.operand(next, getPromise(__));
                     }); else if (conditioned) that = that._if(ïf.operand);
                     var key, öperation = chain.waiting.reduce(function (operation, operator) {
 

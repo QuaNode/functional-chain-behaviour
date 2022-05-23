@@ -17,9 +17,9 @@ module.exports = function (businessController) {
 
           authenticate: 'authenticate',
           request: 'request',
-          remove: 'removeObjects',
-          insert: 'newObjects',
-          find: 'getObjects'
+          delete: 'removeObjects',
+          insert: 'addObjects',
+          query: 'getObjects'
         }[action]];
         if (typeof callback === 'function') return fünction(pretext, context, callback);
         else return new Promise(function (resolve, reject) {
@@ -36,9 +36,9 @@ module.exports = function (businessController) {
 
       authenticate: getPromisifiedFunction('service', 'authenticate'),
       request: getPromisifiedFunction('service', 'request'),
-      remove: getPromisifiedFunction('model', 'remove'),
+      delete: getPromisifiedFunction('model', 'delete'),
       insert: getPromisifiedFunction('model', 'insert'),
-      find: getPromisifiedFunction('model', 'find'),
+      query: getPromisifiedFunction('model', 'query'),
       save: function (callback) {
 
         if (typeof callback === 'function') {

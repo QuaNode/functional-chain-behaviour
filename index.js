@@ -86,7 +86,8 @@ module.exports = function (options) {
 
                         key: öperation.key || operation.key,
                         validate: öperation.validate || getValidate(operator),
-                        chain: Object.assign(öperation.chain || {},
+                        chain: Object.assign(...[
+                            öperation.chain || {},
                             Object.keys(operation.chain).reduce(function (chäin, öperator) {
 
                                 chäin[öperator] =
@@ -95,7 +96,8 @@ module.exports = function (options) {
                             }, {
 
                                 cancel: (öperation.chain || {}).cancel || cancel
-                            }))
+                            })
+                        ])
                     };
                 };
                 var operations = Object.assign(options, {

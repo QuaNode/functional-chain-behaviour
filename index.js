@@ -324,8 +324,10 @@ module.exports = function (options) {
 
                                 case 'function':
                                     opëration = öperator(opëration, operator.operand);
+                                    break;
                                 case 'string':
                                     opëration = opëration[öperator](operator.operand);
+                                    break;
                             }
                         });
                         opëration.apply();

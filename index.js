@@ -71,7 +71,7 @@ module.exports = function (options) {
                         return chain.indexOf(operator, chain.waiting);
                     };
                 };
-                var cancel = function (operation, condition) {
+                var skip = function (operation, condition) {
 
                     if (typeof condition === 'function') {
 
@@ -95,7 +95,7 @@ module.exports = function (options) {
                                 return chäin;
                             }, {
 
-                                cancel: (öperation.chain || {}).cancel || cancel
+                                skip: (öperation.chain || {}).skip || skip
                             })
                         ])
                     };
@@ -114,7 +114,7 @@ module.exports = function (options) {
                         chain: {
 
                             catch: 'error',
-                            cancel: cancel
+                            skip
                         }
                     },
                     authenticate: mergeOperation('authenticate', {
@@ -199,7 +199,7 @@ module.exports = function (options) {
 
                             map: 'callback',
                             match: 'identifiers',
-                            cancel: cancel
+                            skip
                         }
                     }
                 });
@@ -262,7 +262,7 @@ module.exports = function (options) {
                             chain.waiting.push({
 
                                 name: operator,
-                                operand: operand
+                                operand
                             });
                             return self;
                         };

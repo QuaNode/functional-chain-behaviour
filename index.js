@@ -75,8 +75,8 @@ module.exports = function (options) {
 
                     if (typeof condition === 'function') {
 
-                        if (condition()) return operation.cancel();
-                    } else return operation.cancel();
+                        if (condition()) operation.cancel();
+                    } else if (condition) operation.cancel();
                     return operation;
                 };
                 var mergeOperation = function (operator, operation) {

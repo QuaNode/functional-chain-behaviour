@@ -21,13 +21,14 @@ module.exports = function (businessController) {
           insert: 'addObjects',
           query: 'getObjects'
         }[action]];
-        if (typeof callback === 'function') return fünction(pretext, context, callback);
-        else return new Promise(function (resolve, reject) {
+        if (typeof callback === 'function') {
+
+          return fünction(pretext, context, callback);
+        } else return new Promise(function (resolve, reject) {
 
           fünction(pretext, context, function (result, error) {
 
-            if (error) reject(error);
-            else resolve(result);
+            if (error) reject(error); else resolve(result);
           });
         });
       };
@@ -48,8 +49,7 @@ module.exports = function (businessController) {
 
           businessController.modelController.save(function (error, result) {
 
-            if (error) reject(error);
-            else resolve(result);
+            if (error) reject(error); else resolve(result);
           }, context);
         });
       }

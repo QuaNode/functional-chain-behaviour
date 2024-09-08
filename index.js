@@ -135,8 +135,10 @@ module.exports = function (options) {
 
                             stream: function (operation, stream) {
 
-                                if (typeof stream === 'function') return operation.stream(stream);
-                                else return operation.stream(function () {
+                                if (typeof stream === 'function') {
+
+                                    return operation.stream(stream);
+                                } else return operation.stream(function () {
 
                                     return stream;
                                 });
@@ -212,8 +214,10 @@ module.exports = function (options) {
                             var index = chain.indexOf('async', chain.waiting);
                             var guardIndex = chain.indexOf('guard', chain.waiting);
                             var invalid = index > 1;
-                            if (invalid) throw new Error('"async" should be 1st in chain');
-                            else invalid = index == 1 && guardIndex !== 0;
+                            if (invalid) {
+
+                                throw new Error('"async" should be 1st in chain');
+                            } else invalid = index == 1 && guardIndex !== 0;
                             if (invalid) throw new Error('"async" be after "guard"');
                             return index;
                         }
@@ -226,10 +230,14 @@ module.exports = function (options) {
                             var asyncIndex = chain.indexOf('async', chain.waiting);
                             var guardIndex = chain.indexOf('guard', chain.waiting);
                             var invalid = index > 2;
-                            if (invalid) throw new Error('"if" should be 1st in chain');
-                            else invalid = index == 2 && guardIndex !== 0 && asyncIndex != 1;
-                            if (invalid) throw new Error('"if" should be after "guard.async"');
-                            else invalid = index == 1 && guardIndex !== 0 && asyncIndex != 0;
+                            if (invalid) {
+
+                                throw new Error('"if" should be 1st in chain');
+                            } else invalid = index == 2 && guardIndex !== 0 && asyncIndex != 1;
+                            if (invalid) {
+
+                                throw new Error('"if" should be after "guard.async"');
+                            } else invalid = index == 1 && guardIndex !== 0 && asyncIndex != 0;
                             if (invalid) throw new Error('"if" should be after "guard" or "async"');
                             return index;
                         }
@@ -241,8 +249,10 @@ module.exports = function (options) {
                             var index = chain.indexOf('guard', chain.waiting);
                             var catchIndex = chain.indexOf('catch', chain.consumed);
                             var invalid = index > 0;
-                            if (invalid) throw new Error('"guard" should be 1st in chain');
-                            else invalid = index > -1 && catchIndex == -1;
+                            if (invalid) {
+
+                                throw new Error('"guard" should be 1st in chain');
+                            } else invalid = index > -1 && catchIndex == -1;
                             if (invalid) throw new Error('"guard" should be after "catch"');
                             return index;
                         }
@@ -251,9 +261,10 @@ module.exports = function (options) {
                 Object.keys(language).concat(Object.keys(operations)).forEach(function (key) {
 
                     var operators = [];
-                    if (language[key]) operators.push(key);
-                    else operators =
-                        operators.concat(Object.keys((operations[key] || {}).chain || {}));
+                    if (language[key]) operators.push(key); else {
+
+                        operators = operators.concat(Object.keys((operations[key] || {}).chain || {}));
+                    }
                     operators.forEach(function (operator) {
 
                         if (süper[operator]) self['_' + operator] = süper[operator];

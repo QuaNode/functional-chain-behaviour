@@ -213,12 +213,17 @@ module.exports = function (options) {
 
                             var index = chain.indexOf('async', chain.waiting);
                             var guardIndex = chain.indexOf('guard', chain.waiting);
-                            var invalid = index > 1;
+                            var ifIndex = chain.indexOf('if', chain.waiting);
+                            var invalid = index > 2;
                             if (invalid) {
 
                                 throw new Error('"async" should be 1st in chain');
-                            } else invalid = index == 1 && guardIndex !== 0;
-                            if (invalid) throw new Error('"async" be after "guard"');
+                            } else invalid = index == 1 && guardIndex !== 0 && ifIndex !== 0;
+                            if (invalid) {
+
+                                throw new Error('"async" should be after "guard" or "if"');
+                            } else invalid = index == 2 && guardIndex !== 0 && ifIndex !== 1;
+                            if (invalid) throw new Error('"async" should be after "guard.if"');
                             return index;
                         }
                     },
@@ -227,18 +232,13 @@ module.exports = function (options) {
                         validate: function () {
 
                             var index = chain.indexOf('if', chain.waiting);
-                            var asyncIndex = chain.indexOf('async', chain.waiting);
                             var guardIndex = chain.indexOf('guard', chain.waiting);
-                            var invalid = index > 2;
+                            var invalid = index > 1;
                             if (invalid) {
 
                                 throw new Error('"if" should be 1st in chain');
-                            } else invalid = index == 2 && guardIndex !== 0 && asyncIndex != 1;
-                            if (invalid) {
-
-                                throw new Error('"if" should be after "guard.async"');
-                            } else invalid = index == 1 && guardIndex !== 0 && asyncIndex != 0;
-                            if (invalid) throw new Error('"if" should be after "guard" or "async"');
+                            } else invalid = index == 1 && guardIndex !== 0;
+                            if (invalid) throw new Error('"if" should be after "guard"');
                             return index;
                         }
                     },
